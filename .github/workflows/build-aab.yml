@@ -8,21 +8,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v5
+      - name: Setup Java JDK 17
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK manually
+      - name: Setup Android SDK
         run: |
           export ANDROID_SDK_ROOT=$HOME/android-sdk
           export ANDROID_HOME=$ANDROID_SDK_ROOT
@@ -42,15 +42,13 @@ jobs:
           npx --yes cap add android
           npx --yes cap sync android
 
-      - name: Build Release AAB
+      - name: Build Release AAB and APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew bundleRelease
-          ./gradlew assembleRelease
+          ./gradlew bundleRelease assembleRelease
 
       - name: Upload AAB File
-       - name: Upload AAB File
         uses: actions/upload-artifact@v4
         with:
           name: bhumi-mapan-aab
