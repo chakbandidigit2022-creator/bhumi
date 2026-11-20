@@ -47,9 +47,15 @@ jobs:
           cd android
           chmod +x gradlew
           ./gradlew bundleRelease
+          ./gradlew assembleRelease
 
       - name: Upload AAB File
         uses: actions/upload-artifact@v4
         with:
           name: bhumi-mapan-aab
           path: android/app/build/outputs/bundle/release/*.aab
+          - name: Upload APK File
+        uses: actions/upload-artifact@v4
+        with:
+          name: bhumi-mapan-apk
+          path: android/app/build/outputs/apk/release/*.apk
