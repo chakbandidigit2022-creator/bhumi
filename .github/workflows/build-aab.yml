@@ -42,11 +42,11 @@ jobs:
           npx --yes cap add android
           npx --yes cap sync android
 
-      - name: Build Release AAB and APK
+      - name: Build Debug APK & Release AAB
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew bundleRelease assembleRelease
+          ./gradlew assembleDebug bundleRelease
 
       - name: Upload AAB File
         uses: actions/upload-artifact@v4
@@ -54,8 +54,8 @@ jobs:
           name: bhumi-mapan-aab
           path: android/app/build/outputs/bundle/release/*.aab
 
-      - name: Upload APK File
+      - name: Upload Debug APK File
         uses: actions/upload-artifact@v4
         with:
-          name: bhumi-mapan-apk
-          path: android/app/build/outputs/apk/release/*.apk
+          name: bhumi-mapan-debug-apk
+          path: android/app/build/outputs/apk/debug/*.apk
