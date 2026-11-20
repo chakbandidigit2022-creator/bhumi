@@ -1,0 +1,6 @@
+{
+  "appId": "com.bhumi.mapancalculator",
+  "appName": "Bhumi Mapan",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
