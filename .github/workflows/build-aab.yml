@@ -50,11 +50,13 @@ jobs:
           ./gradlew assembleRelease
 
       - name: Upload AAB File
+       - name: Upload AAB File
         uses: actions/upload-artifact@v4
         with:
           name: bhumi-mapan-aab
           path: android/app/build/outputs/bundle/release/*.aab
-          - name: Upload APK File
+
+      - name: Upload APK File
         uses: actions/upload-artifact@v4
         with:
           name: bhumi-mapan-apk
